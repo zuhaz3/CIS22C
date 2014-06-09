@@ -12,6 +12,8 @@ struct Data
    string content;
    string type;
    bool is_read;
+   string created_at;
+   string updated_at;
 };
 
 class BST
