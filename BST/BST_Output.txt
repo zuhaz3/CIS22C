@@ -1,0 +1,54 @@
+
+What do you want to do?
+        S - Search by a unique key
+        D - Recursive Depth-First Traversals: inorder, preorder, postorder
+        B - Tree Breadth-First Traversal
+        T - Print tree as an indented list
+        R - Print the numbers within a given range
+        M - Show menu
+        Q - Quit
+S
+401  FOUND! Data contains: 401,  53518c032da7830400b556fd,  534c50ca35a06a02007e
+fb08,  Ash Bhat added a document to Algebra,  group, 1
+70  FOUND! Data contains: 70,  5359b2148218b10400e2e63f,  5359dedcf7f08a040047c4
+00,  Rajveer Tut joined NoteSnap,  user, 0
+100  NOT FOUND!
+221  NOT FOUND!
+80  FOUND! Data contains: 80,  5359b1f28218b10400e2e63e,  5359dedcf7f08a040047c4
+00,  Rajveer Tut joined NoteSnap,  user, 0
+D
+In Order: 29 70 80 97 103 141 150 192 240 278 302 334 401
+Pre Order: 334 302 150 70 29 80 103 97 141 240 192 278 401
+Post Order: 29 97 141 103 80 70 192 278 240 150 302 401 334
+B
+334 302 401 150 70 240 29 80 192 278 103 97 141
+T
+       2. 401
+ 1. 334
+        2. 302
+                             5. 278
+                      4. 240
+                             5. 192
+               3. 150
+                                         7. 141
+                                  6. 103
+                                          7. 97
+                             5. 80
+                       4. 70
+                             5. 29
+ R
+Please enter a number for the first range value (Min: 29 , Max: 401 ) : 30
+Please enter a number for the second range value (Min: 29 , Max: 401 ) : 300
+70 80 97 103 141 150 192 240 278
+
+M
+
+What do you want to do?
+        S - Search by a unique key
+        D - Recursive Depth-First Traversals: inorder, preorder, postorder
+        B - Tree Breadth-First Traversal
+        T - Print tree as an indented list
+        R - Print the numbers within a given range
+        M - Show menu
+        Q - Quit
+Q
