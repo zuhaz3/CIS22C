@@ -65,12 +65,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BST.cpp" />
+    <ClCompile Include="Hash.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Structs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.h" />
+    <ClInclude Include="Hash.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Structs.h" />
