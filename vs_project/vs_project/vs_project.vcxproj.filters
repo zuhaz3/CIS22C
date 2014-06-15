@@ -15,20 +15,20 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Structs.cpp">
+    <ClCompile Include="BST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Hash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="List.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BST.cpp">
+    <ClCompile Include="Structs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hash.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

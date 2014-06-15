@@ -15,7 +15,6 @@ private:
 
 public:
     // Constructor
-    List();
 	List(int data_count);
     // Destructor
     ~List(); 

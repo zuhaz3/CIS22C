@@ -1,4 +1,3 @@
-// Brian Sonnenberg
 #include "Structs.h"
 
 // Prints all information stored in the data.
@@ -99,4 +98,3 @@ void Bucket::printArray()
 int Bucket::getItemCount() {
 	return item_num;
 }
-

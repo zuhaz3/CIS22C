@@ -12,7 +12,9 @@ Hash::Hash(int data_count) {
 // Allocates the hash memory, then reads through the input file,
 // builds a new data piece and inserts that data piece
 // into the hash line by line.
-Hash::Hash(fstream &inp, int data_count) {
+
+//old hash constructor
+/*Hash::Hash(fstream &inp, int data_count) {
 	ary.resize(data_count);
 	arySize = data_count;
 	string line;
@@ -71,6 +73,7 @@ Hash::Hash(fstream &inp, int data_count) {
 
 	}
 }
+*/
 
 // Runs the given id through hashing function to find the corresponding index, and iterates through the bucket
 // - tells the user if the ID is found.
@@ -124,7 +127,7 @@ int Hash::getNumFullBuckets() {
 // Displays the load factor, the number of collisions, and number of
 // full buckets to the user
 void Hash::displayHashStat() {
-	cout << "Load factor: " << count << "/" << arySize << endl;
+	cout << "Load factor: " << count << "/" << arySize << " = "<< static_cast<double>(count) / arySize << endl;
 	cout << "Number of collisions: " << getNumCollisions() << endl;
 	cout << "Number of full buckets: " << getNumFullBuckets() << endl;
 }

@@ -19,7 +19,7 @@ class Hash
 		
 	public:
 		Hash(int data_count);
-		Hash(fstream &inp, int data_count);
+		//Hash(Data* newData, int data_count);
 		
 		void remove(int id);
 		void search(int id);

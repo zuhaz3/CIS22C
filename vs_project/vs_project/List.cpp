@@ -20,10 +20,21 @@ void List::displaySorted() {
 	pTree->BST_InorderTraverse();
 }
 
-void List::displayHashStat() {
-	pHash->displayHashStat();
+void List::displayTree()
+{
+	pTree->BST_PrintTree();
 }
 
 void List::displayOne(int id) {
 	pHash->search(id);
+}
+
+void List::displayHashStat(){
+	//pHash->displayHashStat();
+};
+
+List::~List()
+{
+	delete pTree;
+	delete pHash;
 }
