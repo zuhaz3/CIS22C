@@ -1,18 +1,8 @@
 // Specification file for the BST class
 #ifndef BST_H
 #define BST_H
-
+#include "Structs.h";
 using namespace std;
-
-struct Data
-{
-   int num;
-   string user_id;
-   string target;
-   string content;
-   string type;
-   bool is_read;
-};
 
 class BST
 {
@@ -35,7 +25,7 @@ public:
     ~BST();
 
     // Binary Tree operations
-    void BST_insert(Data dataIn);
+    void BST_insert(Data* dataIn);
     bool Search(int target, Data &data);
     bool Delete(int target);
     void BST_InorderTraverse() const;

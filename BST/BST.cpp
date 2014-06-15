@@ -114,7 +114,7 @@ void BST::_BST_InorderTraverse(BST_Node *root) const
     if (root)
     {
         _BST_InorderTraverse(root->left);
-        cout << root->data.num << " ";
+        cout << root->data.id << " ";
         _BST_InorderTraverse(root->right);
     }
 }
@@ -127,7 +127,7 @@ void BST::_BST_PreorderTraverse(BST_Node *root) const
 {
 	if (root)
 	{
-		cout << root->data.num << " ";
+		cout << root->data.id << " ";
 		_BST_PreorderTraverse(root->left);
 		_BST_PreorderTraverse(root->right);
 	}
@@ -143,7 +143,7 @@ void BST::_BST_PostorderTraverse(BST_Node *root) const
 	{
 		_BST_PostorderTraverse(root->left);
 		_BST_PostorderTraverse(root->right);
-		cout << root->data.num << " ";
+		cout << root->data.id << " ";
 	}
 }
 
@@ -154,7 +154,7 @@ void BST::_BST_PrintTree(BST_Node *p, int indent, int count) const
 {
 	if (p != NULL) 
 	{
-		string s = to_string(p->data.num);
+		string s = to_string(p->data.id);
 		if (p->right && count == 1) _BST_PrintTree(p->right, indent + 7 + s.length(), count + 1);
 		else if (p->right) _BST_PrintTree(p->right, indent + 4 + s.length(), count+1);
 		if (indent) 
@@ -162,7 +162,7 @@ void BST::_BST_PrintTree(BST_Node *p, int indent, int count) const
 			cout << setw(indent - s.length()) << ' ';
 		}
 		cout << count << ". ";
-		cout << p->data.num << "\n ";
+		cout << p->data.id << "\n ";
 		if (p->left && count == 1) _BST_PrintTree(p->left, indent + 7 + s.length(), count + 1);
 		else if (p->left) _BST_PrintTree(p->left, indent + 4 + s.length(), count+1);
 	}
@@ -178,7 +178,7 @@ void BST::_BST_BreadthFirst(BST_Node *p) const
 	if (p == NULL)
 		return;
 	queue->enqueue(root);
-	cout << p->data.num << " ";
+	cout << p->data.id << " ";
 	while (!queue->isEmpty())
 	{
 		BST_Node *temp;
@@ -186,12 +186,12 @@ void BST::_BST_BreadthFirst(BST_Node *p) const
 		if (temp->left)
 		{
 			queue->enqueue(temp->left);
-			cout << temp->left->data.num << " ";
+			cout << temp->left->data.id << " ";
 		}
 		if (temp->right)
 		{
 			queue->enqueue(temp->right);
-			cout << temp->right->data.num << " ";
+			cout << temp->right->data.id << " ";
 		}
 	}
 	cout << endl;
@@ -209,20 +209,20 @@ void BST::_BST_PrintRange(BST_Node *root, int num1, int num2) const
 	if (root == NULL)
 		return;
 
-	if (num1 < root->data.num)
+	if (num1 < root->data.id)
 		_BST_PrintRange(root->left, num1, num2);
 
-	if (num1 <= root->data.num && num2 >= root->data.num)
-		cout << root->data.num << " ";
+	if (num1 <= root->data.id && num2 >= root->data.id)
+		cout << root->data.id << " ";
 
-	if (num2 > root->data.num)
+	if (num2 > root->data.id)
 		_BST_PrintRange(root->right, num1, num2);
 }
 
 /**~*~*
    Insert data into a BST
 *~**/
-void BST::BST_insert(Data dataIn)
+void BST::BST_insert(Data* dataIn)
 {
     BST_Node *newNode;
     BST_Node *pWalk;
@@ -230,7 +230,7 @@ void BST::BST_insert(Data dataIn)
 
     // allocate the new node
     newNode = new BST_Node;
-    newNode->data  = dataIn;
+    newNode->data  = *dataIn;
     newNode->left  = NULL;
     newNode->right = NULL;
 
@@ -244,7 +244,7 @@ void BST::BST_insert(Data dataIn)
         while( pWalk )
         {
             parent = pWalk;
-            if( dataIn.num < pWalk->data.num )
+            if( dataIn->id < pWalk->data.id )
                 pWalk = pWalk->left;
             else
                 pWalk = pWalk->right;
@@ -253,7 +253,7 @@ void BST::BST_insert(Data dataIn)
         // insert the new node
 		if (parent)
 		{
-			if (dataIn.num < (parent->data).num) // no left child
+			if (dataIn->id < (parent->data).id) // no left child
 				parent->left = newNode;
 			else
 				parent->right = newNode;
@@ -372,10 +372,10 @@ BST::BST_Node * BST::_search(int target)
     BST_Node *pWalk = root;
     while( pWalk )
     {
-        if( target < pWalk->data.num )
+        if( target < pWalk->data.id )
             pWalk = pWalk->left;
         else
-            if( target > pWalk->data.num )
+            if( target > pWalk->data.id )
                 pWalk = pWalk->right;
             else
                 return pWalk; // found
