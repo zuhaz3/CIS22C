@@ -72,10 +72,26 @@ Hash::Hash(fstream &inp, int data_count) {
 	}
 }
 
+bool Hash::remove(int id) {
+	bool found = false;
+	int index = id%arySize;
+	if (index < ary.size() - 1) {
+		if (ary[index] != NULL) {
+			if (ary[index]->remove(id)) {
+				found = true;
+				cout << "ID removed!" << endl << endl;
+			}
+		}
+	}
+	if(!found) cout << "ID not found!" << endl << endl;
+	
+	return found;
+}
+
 // Runs the given id through hashing function to find the corresponding index, and iterates through the bucket
 // - tells the user if the ID is found.
 void Hash::search(int id) {
-	bool found;
+	bool found = false;
 	int index = id%arySize;
 	if (ary[index] != NULL) {
 		for (int i = 0; i < ary[index]->getItemCount(); i++) {
@@ -85,7 +101,7 @@ void Hash::search(int id) {
 				ary[index]->getItem(i)->print();
 			}
 		}
-	   if(!true) cout << "ID not found!" << endl << endl;
+	   if(!found) cout << "ID not found!" << endl << endl;
 	}
 
 	else cout << "ID not found!" << endl << endl;

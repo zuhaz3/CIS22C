@@ -10,7 +10,7 @@ List::List(int data_count) {
 // Need to implement remove function for BST and hash
 void List::remove(int id) {
 	// call remove for BST
-	// pHash->remove(id);
+	 pHash->remove(id);
 }
 void List::insert(Data* data) {
 	pTree->BST_insert(data);
