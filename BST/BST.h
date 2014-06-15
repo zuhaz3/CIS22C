@@ -12,8 +12,6 @@ struct Data
    string content;
    string type;
    bool is_read;
-   string created_at;
-   string updated_at;
 };
 
 class BST
@@ -39,25 +37,28 @@ public:
     // Binary Tree operations
     void BST_insert(Data dataIn);
     bool Search(int target, Data &data);
+    bool Delete(int target);
     void BST_InorderTraverse() const;
-	void BST_PreorderTraverse() const;
-	void BST_PostorderTraverse() const;
-	void BST_PrintTree() const;
-	void BST_BreadthFirst() const;
-	void BST_PrintRange(int n1, int n2) const;
-	Data BST_FindMinimum() const;
-	Data BST_FindMaximum() const;
+    void BST_PreorderTraverse() const;
+    void BST_PostorderTraverse() const;
+    void BST_PrintTree() const;
+    void BST_BreadthFirst() const;
+    void BST_PrintRange(int n1, int n2) const;
+    Data BST_FindMinimum() const;
+    Data BST_FindMaximum() const;
 
 private:
     BST_Node *_search(int target);
+    BST_Node *_delete(BST_Node *root, int target);
     void _BST_InorderTraverse( BST_Node *root ) const;
-	void _BST_PreorderTraverse(BST_Node *root) const;
-	void _BST_PostorderTraverse(BST_Node *root) const;
-	void _BST_PrintTree(BST_Node *p, int indent, int count) const;
-	void _BST_BreadthFirst(BST_Node *p) const;
-	void _BST_PrintRange(BST_Node *root, int num1, int num2) const;
-	Data _BST_FindMinimum(BST_Node *root) const;
-	Data _BST_FindMaximum(BST_Node *root) const;
+    void _BST_PreorderTraverse(BST_Node *root) const;
+    void _BST_PostorderTraverse(BST_Node *root) const;
+    void _BST_PrintTree(BST_Node *p, int indent, int count) const;
+    void _BST_BreadthFirst(BST_Node *p) const;
+    void _BST_PrintRange(BST_Node *root, int num1, int num2) const;
+    Data _BST_FindMinimum(BST_Node *root) const;
+    Data _BST_FindMaximum(BST_Node *root) const;
     void _BST_Destroy(BST_Node *root);
 };
+
 #endif

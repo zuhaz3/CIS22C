@@ -303,12 +303,67 @@ bool BST::Search(int target, Data &data)
     return false;
 }
 
+bool BST::Delete(int target)
+{
+	BST_Node *found = _search(target);
+	if (found)
+	{
+		_delete(root, target);
+		return true;
+	}
+	return false;
+}
+
+BST:: BST_Node * BST::_delete(BST_Node *root, int target)
+{
+	if (root == NULL)
+		return NULL;
+	else if (root->data.num == target)
+	{
+		if (root->right == NULL)
+		{
+			return root->left;
+		}
+		else if (root->left == NULL)
+		{
+			return root->right;
+		}
+		else if (root->left->right == NULL)
+		{
+			root->data = root->left->data;
+			root->left = root->left->left;
+			return root;
+		}
+		else
+		{
+			BST_Node * marker = root->left;
+			while (marker->right->right != NULL)
+			{
+				marker = marker->right;
+			}
+			root->data = marker->right->data;
+			marker->right = marker->right->left;
+			return root;
+		}
+	}
+	else if (root->data.num >= target)
+	{
+		root->left = _delete(root->left, target);
+		return root;
+	}
+	else
+	{
+		root->right = _delete(root->right, target);
+		return root;
+	}
+}
+
 /**~*~*
    Locates the node that contains a given target in a BST:
    - if found returns a pointer to that node
    - if not found returns NULL
 *~**/
-BST::BST_Node* BST::_search(int target)
+BST::BST_Node * BST::_search(int target)
 {
     if (!root) // tree is empty
         return NULL;
