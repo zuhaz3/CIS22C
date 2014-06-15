@@ -318,7 +318,7 @@ BST:: BST_Node * BST::_delete(BST_Node *root, int target)
 {
 	if (root == NULL)
 		return NULL;
-	else if (root->data.num == target)
+	else if (root->data.id == target)
 	{
 		if (root->right == NULL)
 		{
@@ -346,7 +346,7 @@ BST:: BST_Node * BST::_delete(BST_Node *root, int target)
 			return root;
 		}
 	}
-	else if (root->data.num >= target)
+	else if (root->data.id >= target)
 	{
 		root->left = _delete(root->left, target);
 		return root;
