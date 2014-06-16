@@ -114,7 +114,7 @@ void BST::_BST_InorderTraverse(BST_Node *root) const
     if (root)
     {
         _BST_InorderTraverse(root->left);
-        cout << root->data.id << " ";
+        cout << root->data.id << endl;
         _BST_InorderTraverse(root->right);
     }
 }

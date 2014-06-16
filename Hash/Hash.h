@@ -27,6 +27,7 @@ class Hash
 		void displayHashTable();
 		void insert(Data*);
 		void displayHashStat();
+		void displaySorted();
 		int getNumFullBuckets();
 		int getNumCollisions();
 
