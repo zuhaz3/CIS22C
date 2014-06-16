@@ -1,206 +1,152 @@
-#include "List.h"
-#include <fstream>
-#include <iostream>
-#include <sstream>
-using namespace std;
+#include"BST.h"
+#include"Hash.h"
+#include"List.h"
+#include<sstream>
+List* createListFromDataFile(string filename);
+int countElementsinFile(fstream &inp);
+Hash* initHash(fstream &inp);
+void showMenu();
+int NearestPrime(double original);
+bool IsPrime(int p);
 
-int getCount();
-int getValidInt();
-void insert(List *);
-void displayMenu();
-void set(List* dataList);
-int main()
-{
-	List dataList(getCount());
-	set(&dataList);
+int main() {
 
-	int choice = 10;
-	displayMenu();
-	while (choice != 0)
+	List* list = createListFromDataFile("input.txt");
+
+	showMenu();
+	char choice;
+	choice = toupper(getchar());
+
+	while (choice != 'Q')
 	{
-		cout << "\nInput: ";
-		choice = getValidInt();
 		switch (choice)
 		{
-		case 1:
-			insert(&dataList);
+		case 'S':
+			//get user input
+			list->displayOne(51);
 			break;
-		case 2:
-			cout << "Search key: ";
-			dataList.remove(getValidInt());
+		case 'D':
+			//display list
 			break;
-		case 3:
-			cout << "Search key: ";
-			dataList.displayOne(getValidInt());
+		case 'I':
+			list->displaySorted();
 			break;
-		case 4:
-			dataList.displayHash();
+		case 'T':
+			list->displayHashStat();
 			break;
-		case 5:
-			dataList.displaySorted();
+		case 'R':
+			//get user input
+			list->remove(51);
 			break;
-		case 6:
-			dataList.displayTree();
-			break;
-		case 7:
-			//dataList.ouputToFile();
-			break;
-		case 8:
-			//dataList.displayHashStat();
-			break;
-		case 9:
-			displayMenu();
-			break;
-		case 0:
-			break;
-		default:
-			cout << "Invalid input!\n";
+		case 'M':
+			showMenu();
 			break;
 		}
+		choice = toupper(getchar());
 	}
 
 	return 0;
 }
-int getCount()
-{
-	int count = 0;
-	ifstream inp;
-	inp.open("input.txt");
 
+List* createListFromDataFile(string filename) {
+
+	fstream inp;
+	inp.open(filename);
+	if (!inp.is_open())  cout << "\nError opening file!";
+
+	List* newList = new List(countElementsinFile(inp));
 	string line;
-
-
 	while (getline(inp, line))
 	{
-		std::stringstream linestream(line);
-		std::string value;
+		stringstream linestream(line);
+		string value;
 
-		Data* d = new Data; 
-		int num = 0;
-
-		while (getline(linestream, value, ','))
-			num++;
-		count++;
-	}
-	inp.close();
-	return count;
-}
-
-int getValidInt()
-{
-	int num;
-	while (!(cin >> num))
-	{
-		cin.clear();
-		cin.ignore();
-		cout << "\nInvalid choice! \nInput: ";
-	}
-	return num;
-}
-
-void displayMenu()
-{
-	cout << "\n (1) Add new data"
-		<< "\n (2) Delete data"
-		<< "\n (3) Find and display one element with a unique key"
-		<< "\n (4) List data in hash table sequence"
-		<< "\n (5) List data in key sequence(sorted)"
-		<< "\n (6) Print indented tree"
-		<< "\n (7) Write data to a file."
-		<< "\n (8) Hash statistics."
-		<< "\n (9) Display this menu again."
-		<< "\n (0) Quit program.";
-}
-
-void set(List* dataList)
-{
-	ifstream inp;
-	inp.open("input.txt");
-
-	string line;
-
-	//reads data from txt file 
-	while (getline(inp, line))
-	{
-		std::stringstream linestream(line);
-		std::string value;
-
-		Data* d = new Data; //initialize new Data object
+		Data* d;
 		int count = 0;
-
-		// sets the data to their corresponding fields
+		d = new Data();
 		while (getline(linestream, value, ','))
 		{
-			if (count == 0)
-			{
+			if (count == 0)  {
 				istringstream buffer(value);
 				int val;
 				buffer >> val;
 				d->id = val;
 			}
-			if (count == 1)
-			{
-				d->user_id = value.substr(1);
-			}
-			if (count == 2)
-			{
-				d->target = value.substr(1);
-			}
-			if (count == 3)
-			{
-				d->content = value.substr(1);
-			}
-			if (count == 4)
-			{
-				d->type = value.substr(1);
-			}
-			if (count == 5)
-			{
-				std::istringstream is(value);
+			else if (count == 1) d->user_id = value;
+			else if (count == 2) d->target = value;
+			else if (count == 3) d->content = value;
+			else if (count == 4) d->type = value;
+			else if (count == 5)  {
+				istringstream is(value);
 				bool b;
-				is >> std::boolalpha >> b;
+				is >> boolalpha >> b;
 				d->is_read = b;
 			}
-			if (count == 6)
-			{
-				d->created_at = value.substr(1);
-			}
-			if (count == 7)
-			{
-				d->updated_at = value.substr(1);
-			}
+			else if (count == 6) d->created_at = value;
+			else if (count == 7) d->updated_at = value;
 			count++;
 		}
-		dataList->insert(d); //insert data object into hash table
+		newList->insert(d);
 	}
-	inp.close();
+	return newList;
 }
 
-void insert(List * dataList)
+Hash* initHash(fstream &inp)
 {
-	Data * newData = new Data;
-	
-	cout << "user_id: ";
-	newData->user_id = getValidInt();
-	cout << "target: ";
-	cin >> newData->target;
-	cout << "content";
-	cin >> newData->content;
-	cout << "type: ";
-	cin >> newData->type;
-	
-	cout << "is_read";
-	string temp;
-	cin >> temp;
-	if (temp == "true" || temp == "1")
-		newData->is_read = true;
-	else
-		newData->is_read = false;
+	int numElem = countElementsinFile(inp);
+	int hashSize = NearestPrime(numElem);
+	Hash* hash = new Hash(31);
+	return hash;
+}
 
-	cout << "created_at";
-	cin >> newData->created_at;
-	cout << "updated_at";
-	cin >> newData->updated_at;
+// Displays menu to the user
+void showMenu()
+{
+	cout << "\nSelect an option:\n\t"
+		<< "S - Search by a unique key.\n\t"
+		<< "D - Display list.\n\t"
+		<< "I - Display list in order.\n\t"
+		<< "T - Display hash statistics.\n\t"
+		<< "R - Remove an element in the list by ID.\n\t"
+		<< "M - Show menu.\n\t"
+		<< "Q - Quit.\n";
+}
 
-	dataList->insert(newData);
+
+//These functions are necessary for dynamic hash sizing
+int countElementsinFile(fstream &inp) {
+	string line;
+	int line_count = 0;
+	while (getline(inp, line)) {
+		line_count++;
+	}
+	inp.close();
+	inp.open("input.txt");
+	return line_count;
+}
+int NearestPrime(double original)
+{
+	int above = (int)ceil(original);
+	if (above <= 2)
+	{
+		return 2;
+	}
+
+	if (above % 2 == 0) above += 1;
+
+	while (!(IsPrime(above))) {
+		above += 2;
+	}
+	return above;
+}
+
+bool IsPrime(int p)  //intentionally incomplete due to checks in NearestPrime
+{
+	for (int i = 3; i <= sqrt(p); i += 2)
+	{
+		if (p % i == 0)
+			return false;
+	}
+
+	return true;
 }
