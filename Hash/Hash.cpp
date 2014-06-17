@@ -5,9 +5,11 @@
 
 
 Hash::Hash(int data_count) {
+	cout << data_count << endl;
 	count = 0;
-	ary.resize(data_count);
-	arySize = data_count;
+	arySize = NearestPrime(data_count * 2);
+	ary.resize(arySize);
+	
 }
 // Allocates the hash memory, then reads through the input file,
 // builds a new data piece and inserts that data piece
@@ -194,4 +196,31 @@ void Hash::displayHashTable()
 		}
 		cout << endl;
 	}
+}
+
+int Hash::NearestPrime(double original)
+{
+	int above = (int)ceil(original);
+	if (above <= 2)
+	{
+		return 2;
+	}
+
+	if (above % 2 == 0) above += 1;
+
+	while (!(IsPrime(above))) {
+		above += 2;
+	}
+	return above;
+}
+
+bool Hash::IsPrime(int p)  //intentionally incomplete due to checks in NearestPrime
+{
+	for (int i = 3; i <= sqrt(p); i += 2)
+	{
+		if (p % i == 0)
+			return false;
+	}
+
+	return true;
 }

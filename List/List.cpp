@@ -7,6 +7,7 @@ List::List(int data_count) {
 	pTree = new BST();
 	pHash = new Hash(data_count);
 }
+
 void List::displayHash() {
 	pHash->displayHashTable();
 }

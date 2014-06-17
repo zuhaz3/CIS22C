@@ -2,6 +2,8 @@
 #include"Hash.h"
 #include"List.h"
 #include<sstream>
+
+Data* getValidData();
 List* createListFromDataFile(string filename);
 int countElementsinFile(fstream &inp);
 Hash* initHash(fstream &inp);
@@ -21,12 +23,17 @@ int main() {
 	{
 		switch (choice)
 		{
+		case 'A':
+			//get user input
+			list->insert(getValidData());
+			break;
 		case 'S':
 			//get user input
 			list->displayOne(51);
 			break;
-		case 'D':
+		case 'H':
 			//display list
+			list->displayHash();
 			break;
 		case 'I':
 			list->displaySorted();
@@ -46,6 +53,12 @@ int main() {
 	}
 
 	return 0;
+}
+
+Data* getValidData() {
+	Data* newData = new Data();
+	//FILL WITH USER INPUT
+	return newData;
 }
 
 List* createListFromDataFile(string filename) {
@@ -91,21 +104,14 @@ List* createListFromDataFile(string filename) {
 	return newList;
 }
 
-Hash* initHash(fstream &inp)
-{
-	int numElem = countElementsinFile(inp);
-	int hashSize = NearestPrime(numElem);
-	Hash* hash = new Hash(31);
-	return hash;
-}
-
 // Displays menu to the user
 void showMenu()
 {
 	cout << "\nSelect an option:\n\t"
+		<< "A - Add a new notification.\n\t"
 		<< "S - Search by a unique key.\n\t"
-		<< "D - Display list.\n\t"
-		<< "I - Display list in order.\n\t"
+		<< "I - Display list sorted by ID.\n\t"
+		<< "H - Display hash table.\n\t"
 		<< "T - Display hash statistics.\n\t"
 		<< "R - Remove an element in the list by ID.\n\t"
 		<< "M - Show menu.\n\t"
@@ -123,30 +129,4 @@ int countElementsinFile(fstream &inp) {
 	inp.close();
 	inp.open("input.txt");
 	return line_count;
-}
-int NearestPrime(double original)
-{
-	int above = (int)ceil(original);
-	if (above <= 2)
-	{
-		return 2;
-	}
-
-	if (above % 2 == 0) above += 1;
-
-	while (!(IsPrime(above))) {
-		above += 2;
-	}
-	return above;
-}
-
-bool IsPrime(int p)  //intentionally incomplete due to checks in NearestPrime
-{
-	for (int i = 3; i <= sqrt(p); i += 2)
-	{
-		if (p % i == 0)
-			return false;
-	}
-
-	return true;
 }

@@ -31,6 +31,10 @@ class Hash
 		int getNumFullBuckets();
 		int getNumCollisions();
 
+private:
+	int NearestPrime(double original);
+	bool IsPrime(int p);
+
 
 };
 
