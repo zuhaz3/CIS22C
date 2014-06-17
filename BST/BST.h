@@ -32,10 +32,10 @@ public:
     void BST_PreorderTraverse() const;
     void BST_PostorderTraverse() const;
     void BST_PrintTree() const;
-    void BST_BreadthFirst() const;
     void BST_PrintRange(int n1, int n2) const;
     Data BST_FindMinimum() const;
     Data BST_FindMaximum() const;
+	void BST_BreadthFirst(ofstream &outfile) const;
 
 private:
     BST_Node *_search(int target);
@@ -43,12 +43,12 @@ private:
     void _BST_InorderTraverse( BST_Node *root ) const;
     void _BST_PreorderTraverse(BST_Node *root) const;
     void _BST_PostorderTraverse(BST_Node *root) const;
-    void _BST_PrintTree(BST_Node *p, int indent, int count) const;
-    void _BST_BreadthFirst(BST_Node *p) const;
+	void _BST_PrintTree(BST_Node *p, int indent, int count) const;
     void _BST_PrintRange(BST_Node *root, int num1, int num2) const;
     Data _BST_FindMinimum(BST_Node *root) const;
     Data _BST_FindMaximum(BST_Node *root) const;
     void _BST_Destroy(BST_Node *root);
+	void _BST_BreadthFirst(BST_Node *p, ofstream &outfile) const;
 };
 
 #endif

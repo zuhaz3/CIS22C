@@ -2,6 +2,7 @@
 #include <iostream>  // For cout and NULL
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 #include "Queue.h"
 #include "BST.h"
@@ -52,12 +53,11 @@ void BST::BST_PrintTree() const
 	_BST_PrintTree(root, 0, 1);
 }
 
-/**~*~*
-	This function calls the breadth first traversal function
-*~**/
-void BST::BST_BreadthFirst() const
+
+// Breadth traversal used for file output
+void BST::BST_BreadthFirst(ofstream &outfile) const
 {
-	_BST_BreadthFirst(root);
+	_BST_BreadthFirst(root, outfile);
 }
 
 Data BST::BST_FindMinimum() const
@@ -168,17 +168,15 @@ void BST::_BST_PrintTree(BST_Node *p, int indent, int count) const
 	}
 }
 
-/**~*~*
-	Traverse through the BST using breadth first traversal
-	with a queue
-*~**/
-void BST::_BST_BreadthFirst(BST_Node *p) const
+// Breadth traversal overload used for file output.
+void BST::_BST_BreadthFirst(BST_Node *p, ofstream &outfile) const
 {
 	Queue<BST_Node *> *queue = new Queue<BST_Node *>;
 	if (p == NULL)
 		return;
 	queue->enqueue(root);
-	cout << p->data.id << " ";
+	
+	//outfile << p->data.id << ", " << p->data.user_id << ", " << p->data.target << ", " << p->data.content << ", " << p->data.type << ", " << p->data.created_at << ", " << p->data.updated_at << endl;
 	while (!queue->isEmpty())
 	{
 		BST_Node *temp;
@@ -186,15 +184,14 @@ void BST::_BST_BreadthFirst(BST_Node *p) const
 		if (temp->left)
 		{
 			queue->enqueue(temp->left);
-			cout << temp->left->data.id << " ";
+			outfile << temp->left->data.id << ", " << temp->data.user_id << ", " << temp->data.target << ", " << temp->data.content << ", " << temp->data.type << ", " << temp->data.created_at << ", " << temp->data.updated_at << endl;
 		}
 		if (temp->right)
 		{
 			queue->enqueue(temp->right);
-			cout << temp->right->data.id << " ";
+			outfile << temp->right->data.id << ", " << temp->data.user_id << ", " << temp->data.target << ", " << temp->data.content << ", " << temp->data.type << ", " << temp->data.created_at << ", " << temp->data.updated_at << endl;
 		}
 	}
-	cout << endl;
 }
 
 /**~*~*

@@ -8,6 +8,10 @@ List::List(int data_count) {
 	pHash = new Hash(data_count);
 }
 
+void List::outCSV(ofstream &outfile) {
+	pTree->BST_BreadthFirst(outfile);
+}
+
 void List::displayHash() {
 	pHash->displayHashTable();
 }

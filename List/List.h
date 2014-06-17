@@ -28,6 +28,7 @@ public:
 	void displayTree();
 	bool ouputToFile();
 	void displayHashStat();
+	void outCSV(ofstream&);
 
 };
 #endif

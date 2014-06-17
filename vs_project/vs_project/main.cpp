@@ -3,8 +3,9 @@
 #include"List.h"
 #include<sstream>
 
+void outputToFile(List* list);
 Data* getValidData();
-List* createListFromDataFile(string filename);
+List* createListFromDataFile(fstream &inp);
 int countElementsinFile(fstream &inp);
 Hash* initHash(fstream &inp);
 void showMenu();
@@ -13,8 +14,9 @@ bool IsPrime(int p);
 
 int main() {
 
-	List* list = createListFromDataFile("input.txt");
-
+	List* list;
+	fstream inp;
+	list = createListFromDataFile(inp);
 	showMenu();
 	char choice;
 	choice = toupper(getchar());
@@ -48,11 +50,20 @@ int main() {
 		case 'M':
 			showMenu();
 			break;
+		case 'W':
+			outputToFile(list);
+			break;
 		}
 		choice = toupper(getchar());
 	}
 
 	return 0;
+}
+
+void outputToFile(List* list) {
+	ofstream out;
+	out.open("save.txt");
+	list->outCSV(out);
 }
 
 Data* getValidData() {
@@ -61,11 +72,17 @@ Data* getValidData() {
 	return newData;
 }
 
-List* createListFromDataFile(string filename) {
+List* createListFromDataFile(fstream &inp) {
 
-	fstream inp;
-	inp.open(filename);
-	if (!inp.is_open())  cout << "\nError opening file!";
+	inp.open("save.txt");
+	if (!inp.is_open()) {
+		cout << "Couldn't find saved datafile - using default." << endl;
+		inp.open("input.txt");
+		if (!inp.is_open()) {
+			cerr << "Error opening file!" << endl;
+		}
+	}
+	else cout << "Reloading your list from last time..." << endl;
 
 	List* newList = new List(countElementsinFile(inp));
 	string line;
@@ -115,6 +132,7 @@ void showMenu()
 		<< "T - Display hash statistics.\n\t"
 		<< "R - Remove an element in the list by ID.\n\t"
 		<< "M - Show menu.\n\t"
+		<< "W - Save to file\n\t"
 		<< "Q - Quit.\n";
 }
 
