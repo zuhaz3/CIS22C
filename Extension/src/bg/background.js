@@ -18,7 +18,7 @@ function show(content, title) {
   //   title, // The title.
   //   content      // The body.
   // );
-  var notification = new Notification(content, { icon: img_path });
+  var notification = new Notification(title, { icon: img_path, body: content });
   notification.addEventListener('click', function() {
 	    notification.cancel();
 	});
