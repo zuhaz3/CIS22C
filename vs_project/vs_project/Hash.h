@@ -21,7 +21,7 @@ class Hash
 		Hash(int data_count);
 		//Hash(Data* newData, int data_count);
 		
-		void remove(int id);
+		bool remove(int id);
 		void search(int id);
 		void displayValues();
 		void displayHashTable();

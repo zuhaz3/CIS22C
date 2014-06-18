@@ -1,15 +1,16 @@
 #include "Hash.h"
 #include "List.h"
 #include <cmath>
-
+#include <fstream>
 
 List::List(int data_count) {
 	pTree = new BST();
 	pHash = new Hash(data_count);
 }
 // Need to implement remove function for BST and hash
-void List::remove(int id) {
-	// call remove for BST
+bool List::remove(int id) {
+	return pTree->Delete(id);
+
 	// pHash->remove(id);
 }
 void List::insert(Data* data) {
@@ -30,9 +31,19 @@ void List::displayOne(int id) {
 }
 
 void List::displayHashStat(){
-	//pHash->displayHashStat();
+	pHash->displayHashStat();
 };
 
+bool List::outCSV()
+{
+	bool success = false;
+	ofstream outputFile;
+	outputFile.open("output.txt");
+	if(outputFile << "Testing")
+		success = true;
+	outputFile.close();
+	return success;
+}
 List::~List()
 {
 	delete pTree;
