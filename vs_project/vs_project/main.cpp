@@ -111,7 +111,7 @@ Data* getValidData() {
 
 List* createListFromDataFile(fstream &inp) {
 
-	inp.open("save.txt");
+	inp.open("output.txt");
 	if (!inp.is_open()) {
 		cout << "Couldn't find saved datafile - using default." << endl;
 		inp.open("input.txt");

@@ -1,20 +1,19 @@
-﻿Build started 6/17/2014 7:40:12 PM.
-     1>Project "D:\GitHub\CIS22C\vs_project\vs_project\vs_project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 6/18/2014 12:35:09 AM.
+     1>Project "C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\vs_project\vs_project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-     1>d:\github\cis22c\vs_project\vs_project\bst.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>d:\github\cis22c\vs_project\vs_project\main.cpp(65): warning C4390: ';' : empty controlled statement found; is this the intent?
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TP /analyze- /errorReport:prompt Hash.cpp
+         Hash.cpp
+     1>c:\users\brian\documents\github\cis22c\vs_project\vs_project\hash.cpp(207): warning C4018: '<' : signed/unsigned mismatch
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\CIS22C\vs_project\Debug\vs_project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\GitHub\CIS22C\vs_project\Debug\vs_project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\CIS22C\vs_project\Debug\vs_project.lib" /MACHINE:X86 Debug\BST.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\Debug\vs_project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\Debug\vs_project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\Debug\vs_project.lib" /MACHINE:X86 Debug\BST.obj
          Debug\Hash.obj
          Debug\List.obj
          Debug\main.obj
          Debug\Structs.obj
-         vs_project.vcxproj -> D:\GitHub\CIS22C\vs_project\Debug\vs_project.exe
+         vs_project.vcxproj -> C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\Debug\vs_project.exe
        BscMake:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"D:\GitHub\CIS22C\vs_project\Debug\vs_project.bsc" /n Debug\BST.sbr Debug\Hash.sbr Debug\List.sbr Debug\main.sbr Debug\Structs.sbr
-     1>Done Building Project "D:\GitHub\CIS22C\vs_project\vs_project\vs_project.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o"C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\Debug\vs_project.bsc" /n Debug\BST.sbr Debug\Hash.sbr Debug\List.sbr Debug\main.sbr Debug\Structs.sbr
+     1>Done Building Project "C:\Users\Brian\Documents\GitHub\CIS22C\vs_project\vs_project\vs_project.vcxproj" (Build target(s)).
 
 Build succeeded.
 

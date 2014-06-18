@@ -35,7 +35,7 @@ public:
 	void printArray();
 	void printValues();
 	void insert(Data*);
-	void remove(Data*);
+	bool remove(int id);
 	bool isEmpty();
 };
 

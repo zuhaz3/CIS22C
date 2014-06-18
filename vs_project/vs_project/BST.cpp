@@ -2,6 +2,7 @@
 #include <iostream>  // For cout and NULL
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 #include "Queue.h"
 #include "BST.h"
@@ -24,6 +25,12 @@ BST::BST()
 void BST::BST_InorderTraverse() const
 {
     _BST_InorderTraverse(root);
+}
+
+bool BST::BST_CSV_Out(ofstream &outfile) const
+{
+	if(_BST_CSV_Out(root, outfile)) return true;
+	return false;
 }
 
 /**~*~*
@@ -69,6 +76,42 @@ Data BST::BST_FindMaximum() const
 {
 	return _BST_FindMaximum(root);
 }
+// Breadth traversal used for file output.
+bool BST::_BST_CSV_Out(BST_Node *p, ofstream &outfile) const
+{
+	bool success = false;
+	Queue<BST_Node *> *queue = new Queue<BST_Node *>;
+	if (p == NULL)
+		return success;
+	queue->enqueue(root);
+	try{
+		outfile << p->data.id << ", " << p->data.user_id << ", " << p->data.target << ", " << p->data.content << ", " << p->data.type << ", " << p->data.created_at << ", " << p->data.updated_at << endl;
+		while (!queue->isEmpty())
+		{
+			BST_Node *temp;
+			queue->dequeue(temp);
+			if (temp->left)
+			{
+				queue->enqueue(temp->left);
+				outfile << temp->left->data.id << ", " << temp->data.user_id << ", " << temp->data.target << ", " << temp->data.content << ", " << temp->data.type << ", " << temp->data.created_at << ", " << temp->data.updated_at << endl;
+			}
+			if (temp->right)
+			{
+				queue->enqueue(temp->right);
+				outfile << temp->right->data.id << ", " << temp->data.user_id << ", " << temp->data.target << ", " << temp->data.content << ", " << temp->data.type << ", " << temp->data.created_at << ", " << temp->data.updated_at << endl;
+			}
+		}
+		success = true;
+	}
+	catch (exception e) {
+		cerr << "Error opening or writing to file! " << endl;
+		success = false;
+	}
+
+	return success;
+}
+
+
 
 /**~*~*
 	This function finds and returns the minimum value in the BST

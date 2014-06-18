@@ -9,9 +9,7 @@ List::List(int data_count) {
 }
 // Need to implement remove function for BST and hash
 bool List::remove(int id) {
-	return pTree->Delete(id);
-
-	// pHash->remove(id);
+	if (pHash->remove(id) && pTree->Delete(id)) return true;
 }
 void List::insert(Data* data) {
 	pTree->BST_insert(data);
@@ -37,10 +35,10 @@ void List::displayHashStat(){
 bool List::outCSV()
 {
 	bool success = false;
+
 	ofstream outputFile;
 	outputFile.open("output.txt");
-	if(outputFile << "Testing")
-		success = true;
+	if (pTree->BST_CSV_Out(outputFile)) success = true;
 	outputFile.close();
 	return success;
 }

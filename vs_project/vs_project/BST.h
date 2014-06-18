@@ -36,6 +36,7 @@ public:
 	void BST_PrintRange(int n1, int n2) const;
 	Data BST_FindMinimum() const;
 	Data BST_FindMaximum() const;
+	bool BST_CSV_Out(ofstream &outfile) const;
 
 private:
     BST_Node *_search(int target);
@@ -49,5 +50,6 @@ private:
 	Data _BST_FindMinimum(BST_Node *root) const;
 	Data _BST_FindMaximum(BST_Node *root) const;
     void _BST_Destroy(BST_Node *root);
+	bool _BST_CSV_Out(BST_Node *p, ofstream &outfile) const;
 };
 #endif

@@ -49,25 +49,21 @@ void Bucket::insert(Data* newData)
 
 //not used in this program, but will remove an element from the bucket and
 // fill the, now NULL, remaining index with the last element of the bucket.
-void Bucket::remove(Data* remData)
+bool Bucket::remove(int ID)
 {
-	for (int i = 0; i<dataPtr.size(); i++)
+	for (int i = 0; i < dataPtr.size(); i++)
 	{
-		if (dataPtr.at(i) == remData)
-		{
-			dataPtr[i] = NULL;
-			item_num--;
-			int replace = 0;
-			for (i = 0; i >= dataPtr.size(); i++)
+		if (dataPtr.at(i) != NULL) {
+			if (dataPtr.at(i)->id == ID)
 			{
-				if (dataPtr[i] == NULL)
-				{
-					dataPtr.at(i) = dataPtr.back();
-					dataPtr.pop_back();
-				}
+				dataPtr[i] = dataPtr[dataPtr.size() - 1];
+				dataPtr[dataPtr.size() - 1] = NULL;
+				item_num--;
+				return true;
 			}
 		}
 	}
+	return false;
 }
 // Prints only actual data in the bucket.
 void Bucket::printValues() {
