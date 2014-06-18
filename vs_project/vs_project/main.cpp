@@ -3,7 +3,7 @@
 #include"List.h"
 #include<sstream>
 
-void outputToFile(List* list);
+//void outputToFile(List* list);
 Data* getValidData();
 List* createListFromDataFile(fstream &inp);
 int countElementsinFile(fstream &inp);
@@ -11,18 +11,21 @@ Hash* initHash(fstream &inp);
 void showMenu();
 int NearestPrime(double original);
 bool IsPrime(int p);
-
+int getValidInt();
+string getValidString(int);
 int main() {
 
 	List* list;
 	fstream inp;
 	list = createListFromDataFile(inp);
 	showMenu();
-	char choice;
-	choice = toupper(getchar());
+	char choice = ' ';
+	
 
 	while (choice != 'Q')
 	{
+		cout << "\noption choice: ";
+		choice = toupper(getchar());
 		switch (choice)
 		{
 		case 'A':
@@ -30,12 +33,12 @@ int main() {
 			list->insert(getValidData());
 			break;
 		case 'S':
-			//get user input
-			list->displayOne(51);
+			cout << "Enter target key: ";
+			list->displayOne(getValidInt());
 			break;
 		case 'H':
 			//display list
-			list->displayHash();
+			//list->displayHashTable();
 			break;
 		case 'I':
 			list->displaySorted();
@@ -43,32 +46,66 @@ int main() {
 		case 'T':
 			list->displayHashStat();
 			break;
+		case 'P':
+			list->displayTree();
+			break;
 		case 'R':
 			//get user input
-			list->remove(51);
+			cout << "Enter target key: ";
+			if (list->remove(getValidInt()))
+				cout << " *Delete successful*";
+			else
+				cout << " *Delete not successful*";
 			break;
 		case 'M':
 			showMenu();
 			break;
 		case 'W':
-			outputToFile(list);
+			if(list->outCSV());
 			break;
+		case 'Q':
+			break;
+		default:
+			cout << "*Invalid choice!*\n";
 		}
-		choice = toupper(getchar());
 	}
 
 	return 0;
 }
-
+/*
 void outputToFile(List* list) {
 	ofstream out;
 	out.open("save.txt");
-	list->outCSV(out);
+	list->outCSV();
 }
+*/
 
 Data* getValidData() {
 	Data* newData = new Data();
-	//FILL WITH USER INPUT
+
+	cout << " id: ";
+	newData->id = getValidInt();
+	cout << " user_id: ";
+	newData->user_id = getValidString(24);
+	cout << " target: ";
+	newData->target = getValidString(24);
+	cout << " content";
+	cin >> newData->content;
+	cout << " type: ";
+	cin >> newData->type;
+
+	cout << " is_read";
+	string temp;
+	cin >> temp;
+	if (temp == "true" || temp == "1")
+		newData->is_read = true;
+	else
+		newData->is_read = false;
+
+	cout << " created_at";
+	newData->created_at = getValidString(24);;
+	cout << " updated_at";
+	newData->updated_at = getValidString(24);;
 	return newData;
 }
 
@@ -130,6 +167,7 @@ void showMenu()
 		<< "I - Display list sorted by ID.\n\t"
 		<< "H - Display hash table.\n\t"
 		<< "T - Display hash statistics.\n\t"
+		<< "P - Print indented tree.\n\t"
 		<< "R - Remove an element in the list by ID.\n\t"
 		<< "M - Show menu.\n\t"
 		<< "W - Save to file\n\t"
@@ -147,4 +185,29 @@ int countElementsinFile(fstream &inp) {
 	inp.close();
 	inp.open("input.txt");
 	return line_count;
+}
+
+int getValidInt()
+ {
+	int num;
+	while (!(cin >> num))
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "  *Invalid input!* \n Input again: ";
+	}
+	return num;
+}
+
+string getValidString(int length)
+{
+	string input;
+	cin >> input;
+	while (input.size() != length)
+	{
+		cin.clear();
+		cin.ignore();
+		cout << " Invalid input. Input have to be " << length << " characters long.\n Try again: ";
+	}
+	return input;
 }

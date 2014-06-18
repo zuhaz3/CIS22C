@@ -6,6 +6,7 @@
 #include "BST.h"
 #include "Hash.h"
 #include "Structs.h"
+
 class List
 {
 private:
@@ -20,13 +21,14 @@ public:
     ~List(); 
 
 	void insert(Data*);
-	void remove(int id);
+	bool remove(int id);
 	void displayOne(int id);
-	void displayHash();
+	void displayHashTable();
 	void displaySorted();
 	void displayTree();
-	bool ouputToFile();
+	//bool ouputToFile();
 	void displayHashStat();
+	bool outCSV();
 
 };
 #endif
