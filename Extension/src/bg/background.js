@@ -13,12 +13,11 @@ chrome.extension.onMessage.addListener(
 
 function show(content, title) {
   var img_path = 'src/bg/logo.png';
-  // var notification = window.webkitNotifications.createNotification(
-  //   img_path,                      // The image.
-  //   title, // The title.
-  //   content      // The body.
-  // );
-  var notification = new Notification(title, { icon: img_path, body: content });
+  var notification = window.webkitNotifications.createNotification(
+    img_path,                      // The image.
+    title, // The title.
+    content      // The body.
+  );
   notification.addEventListener('click', function() {
 	    notification.cancel();
 	});
